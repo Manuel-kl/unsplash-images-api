@@ -4,16 +4,17 @@
       Langat Emmanuel <span>Have a great {{ fullDay }}</span>
     </div>
     <div class="social-links">
-      <a href="https://x.com/Manuelkl_">
+      <a href="https://x.com/Manuelkl_" target="_blank">
         <img src="../assets/twitter_x_logo.png" alt="x_icon" />
       </a>
-      <a href="https://github.com/manuel-kl/">
+      <a href="https://github.com/manuel-kl/" target="_blank">
         <img src="../assets/github_icon.png" alt="github_icon" /> </a
-      ><a href="https://www.linkedin.com/in/elangat/">
+      ><a href="https://www.linkedin.com/in/elangat/" target="_blank">
         <img src="../assets/linkedIn_logo.png" alt="linkedIn_icon" />
       </a>
       <a
         href="https://api.whatsapp.com/send?phone=254743520021&text=Hello%20Manuel..."
+        target="_blank"
       >
         <img src="../assets/whatsapp_icon.png" alt="whatsapp_icon" />
       </a>

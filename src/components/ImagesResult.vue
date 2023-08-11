@@ -1,6 +1,9 @@
 <template>
   <NavBar />
   <skeleton-loading v-if="loading" />
+  <div class="no-results" v-if="!loading && photos.length === 0">
+    <h1>No results found</h1>
+  </div>
   <div v-if="!loading" class="results">
     <div class="image-grid">
       <div
@@ -59,6 +62,18 @@ function showImage(id) {
   min-height: 100vh;
 }
 
+.no-results {
+  background-color: $main-bg-color;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-family: $space-grotesk;
+    font-size: 30px;
+    color: $black;
+  }
+}
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

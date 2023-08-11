@@ -1,11 +1,11 @@
 <template>
   <nav class="navigation">
     <div class="left">
-      <router-link to="/">Home</router-link>
+      <router-link to="/" active-class="active">Home</router-link>
     </div>
     <div class="right">
-      <router-link to="/about">About</router-link>
-      <router-link to="/contact">Contact</router-link>
+      <router-link to="/about" active-class="active">About</router-link>
+      <router-link to="/contact" active-class="active">Contact</router-link>
     </div>
   </nav>
 </template>
@@ -48,6 +48,10 @@
       &:hover {
         color: $secondary-color;
       }
+    }
+
+    .active {
+      color: $secondary-color;
     }
   }
 }
