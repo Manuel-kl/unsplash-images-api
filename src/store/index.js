@@ -1,14 +1,8 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
+import searchPhotosModule from "./search-photos-module";
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
-  }
-})
+    searchPhotosModule: searchPhotosModule,
+  },
+});
