@@ -25,14 +25,8 @@ const router = useRouter();
 
 async function searchImages() {
   loading.value = true;
-  const payload = {
-    query: searchTerm.value,
-    per_page: 10,
-    page: 1,
-  };
-  await store.dispatch("searchPhotosModule/fetchPhotos", payload);
+  router.push(`/results/${searchTerm.value}`);
   loading.value = false;
-  router.push("/results");
 }
 </script>
 <style lang='scss' scoped>

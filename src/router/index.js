@@ -8,9 +8,19 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/results",
+    path: "/results/:query",
     name: "results",
     component: () => import("../views/ImageResultsView.vue"),
+  },
+  {
+    path: "/photo/:id",
+    name: "photo",
+    component: () => import("../views/PhotoView.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "not-found",
+    component: () => import("../views/NotFoundView.vue"),
   },
 ];
 
