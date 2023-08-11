@@ -1,9 +1,14 @@
 <template>
+  <nav-bar />
   <skeleton-loading v-if="loading" />
+  <div v-if="!loading" class="back">
+    <button @click="goBack">Go Back</button>
+  </div>
   <div class="photo">
     <div v-if="!loading" class="img">
       <img :src="imgUrl.full" :alt="photo.alt_description" />
     </div>
+
     <div class="photo-details" v-if="!loading">
       <div class="image-description">
         <h4>
@@ -44,11 +49,14 @@
       </div>
     </div>
   </div>
+  <footer-component />
 </template>
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import FooterComponent from "./FooterComponent.vue";
+import NavBar from "./NavBar.vue";
 import SkeletonLoading from "./SkeletonLoading.vue";
 
 const store = useStore();
@@ -58,6 +66,10 @@ const loading = ref(false);
 const imgUrl = ref("");
 const user = ref("user");
 const links = ref({});
+
+function goBack() {
+  router.go(-1);
+}
 
 async function getPhoto() {
   loading.value = true;
@@ -79,6 +91,35 @@ onMounted(() => {
 <style lang='scss' scoped>
 @import "../sass/_global";
 
+.back {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.5rem 0 0.5rem 2rem;
+  background-color: $main-bg-color;
+
+  button {
+    padding: 0.5rem 1.5rem;
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    transition: transform 0.5s ease;
+    font-family: $space-grotesk;
+    font-size: 1.2rem;
+  }
+
+  button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+    border-bottom: 1px solid $secondary-color;
+    border-right: 1px solid $secondary-color;
+  }
+
+  button:active {
+    transform: scale(0.9);
+    transition: transform 0.5s ease;
+  }
+}
 .photo {
   display: grid;
   grid-template-columns: 2fr 1fr;

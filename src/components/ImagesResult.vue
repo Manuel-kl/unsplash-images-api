@@ -1,12 +1,5 @@
 <template>
-  <header class="navigation">
-    <h1 class="logo">Unsplash Images</h1>
-    <nav class="nav-links">
-      <a href="#" class="nav-link">Home</a>
-      <a href="#" class="nav-link">About</a>
-      <a href="#" class="nav-link">Contact</a>
-    </nav>
-  </header>
+  <NavBar />
   <skeleton-loading v-if="loading" />
   <div v-if="!loading" class="results">
     <div class="image-grid">
@@ -21,12 +14,15 @@
       </div>
     </div>
   </div>
+  <footer-component />
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import FooterComponent from "./FooterComponent.vue";
+import NavBar from "./NavBar.vue";
 import SkeletonLoading from "./SkeletonLoading.vue";
 
 const store = useStore();
@@ -129,37 +125,6 @@ function showImage(id) {
 
   @media (max-width: 400px) {
     grid-template-columns: repeat(1, 1fr);
-  }
-}
-.navigation {
-  background-color: $primary-color;
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-family: $noto-serif;
-  font-size: 24px;
-  color: $white;
-  margin-left: 20px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-  margin-right: 20px;
-}
-
-.nav-link {
-  font-family: $space-grotesk;
-  font-size: 16px;
-  color: $white;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
   }
 }
 </style>

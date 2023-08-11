@@ -1,4 +1,5 @@
 <template>
+  <nav-bar />
   <div class="home">
     <h1>Search Images</h1>
     <form class="search" @submit.prevent="searchImages">
@@ -12,11 +13,14 @@
       <img v-if="loading" src="../assets/loader.gif" alt="" />
     </form>
   </div>
+  <footer-component />
 </template>
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import FooterComponent from "./FooterComponent.vue";
+import NavBar from "./NavBar.vue";
 
 const searchTerm = ref("");
 const loading = ref(false);
