@@ -1,9 +1,10 @@
 <template>
+  <skeleton-loading v-if="loading" />
   <div class="photo">
     <div v-if="!loading" class="img">
       <img :src="imgUrl.full" :alt="photo.alt_description" />
     </div>
-    <div class="photo-details">
+    <div class="photo-details" v-if="!loading">
       <div class="image-description">
         <h4>
           Description: <span>{{ photo.description }}</span>
@@ -48,6 +49,7 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import SkeletonLoading from "./SkeletonLoading.vue";
 
 const store = useStore();
 const router = useRouter();
@@ -65,7 +67,9 @@ async function getPhoto() {
   imgUrl.value = photo.value.urls;
   user.value = photo.value.user;
   links.value = photo.value.links;
-  loading.value = false;
+  setTimeout(() => {
+    loading.value = false;
+  }, 1000);
 }
 
 onMounted(() => {
