@@ -5,7 +5,7 @@
     </div>
     <div class="right">
       <router-link to="/about" active-class="active">About</router-link>
-      <router-link to="/contact" active-class="active">Contact</router-link>
+      <router-link to="/contact" active-class="active">Contact Me</router-link>
     </div>
   </nav>
 </template>
