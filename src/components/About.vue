@@ -83,6 +83,10 @@ import NavBar from "./NavBar.vue";
       margin-bottom: 1.5rem;
       font-family: $noto-serif;
       color: $primary-color;
+
+      @media (max-width: 600px) {
+        font-size: 1.3rem;
+      }
     }
     h3 {
       margin-top: 2rem;
@@ -93,8 +97,10 @@ import NavBar from "./NavBar.vue";
       margin-bottom: 1rem;
       font-family: $noto-serif;
       max-width: 800px;
+      line-height: 2rem;
 
       span {
+        display: inline-block;
         padding: 0.1rem 0.7rem 0.1rem 0.5rem;
         border-radius: 7px;
         border-bottom: 2px groove $primary-color;

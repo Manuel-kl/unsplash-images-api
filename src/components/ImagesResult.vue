@@ -88,6 +88,7 @@ function showImage(id) {
     padding: 5px 10px;
     position: relative;
     z-index: 1;
+    height: 300px;
 
     &:hover {
       transform: scale(1.05);
@@ -105,7 +106,7 @@ function showImage(id) {
 
     img {
       width: 100%;
-      height: 250px;
+      height: 100%;
       object-fit: cover;
       border-radius: 7px;
       position: relative;
@@ -130,16 +131,13 @@ function showImage(id) {
     }
   }
 
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
 
-  @media (max-width: 500px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  @media (max-width: 400px) {
-    grid-template-columns: repeat(1, 1fr);
+    .image-card {
+      height: 250px;
+    }
   }
 }
 </style>

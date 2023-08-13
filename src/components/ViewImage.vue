@@ -8,39 +8,43 @@
     <div v-if="!loading" class="img">
       <img :src="imgUrl.full" :alt="photo.alt_description" />
     </div>
-
-    <div class="photo-details" v-if="!loading">
-      <div class="image-description">
-        <h4>
-          Description: <span>{{ photo.description }}</span>
-        </h4>
-        <h4>
-          Downloads: <span>{{ photo.downloads }}</span>
-        </h4>
-        <h4>
-          Likes: <span>{{ photo.likes }}</span>
-        </h4>
-        <h4>
-          Views: <span>{{ photo.views }}</span>
-        </h4>
-        <h4>
-          Created at:
-          <span>{{ new Date(photo.created_at) }}</span>
-        </h4>
-      </div>
-      <div class="owner-details">
-        <h4>
-          Owner: <span>{{ user.first_name }}</span>
-        </h4>
-        <h4>
-          Instagram: <span>{{ user.instagram_username }}</span>
-        </h4>
-        <h4>
-          Location: <span>{{ user.location }}</span>
-        </h4>
-        <h4>
-          Portfolio link: <span>{{ user.portfolio_url }}</span>
-        </h4>
+    <div>
+      <div class="photo-details" v-if="!loading">
+        <div class="image-description">
+          <h4>
+            Description: <span>{{ photo.description }}</span>
+          </h4>
+          <h4>
+            Downloads: <span>{{ photo.downloads }}</span>
+          </h4>
+          <h4>
+            Likes: <span>{{ photo.likes }}</span>
+          </h4>
+          <h4>
+            Views: <span>{{ photo.views }}</span>
+          </h4>
+          <h4>
+            Created at:
+            <span>{{ new Date(photo.created_at) }}</span>
+          </h4>
+        </div>
+        <div class="owner-details">
+          <h4>
+            Owner: <span>{{ user.first_name }}</span>
+          </h4>
+          <h4>
+            Instagram: <span>{{ user.instagram_username }}</span>
+          </h4>
+          <h4>
+            Location: <span>{{ user.location }}</span>
+          </h4>
+          <h4 class="portfolio">
+            Portfolio link:
+            <span>
+              <a :href="user.portfolio_url">Visit</a>
+            </span>
+          </h4>
+        </div>
       </div>
       <div class="download">
         <button>
@@ -149,10 +153,21 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    padding: 0 1rem;
     background-color: $main-bg-color;
+    width: 100%;
 
     .image-description {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      border-radius: 7px;
+
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+      @media (max-width: 500px) {
+        width: 80%;
+        margin: auto;
+      }
       h4 {
         margin-bottom: 1rem;
         font-family: $space-grotesk;
@@ -165,11 +180,19 @@ onMounted(() => {
           font-size: 1rem;
           color: $black;
           font-family: $space-grotesk;
+
+          @media (max-width: 768px) {
+            font-size: 1rem;
+          }
         }
       }
     }
 
     .owner-details {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      border-radius: 7px;
+
       h4 {
         margin-bottom: 1rem;
         font-family: $space-grotesk;
@@ -182,39 +205,87 @@ onMounted(() => {
           font-size: 1rem;
           color: $black;
           font-family: $space-grotesk;
+
+          a {
+            color: blue;
+            text-decoration: none;
+            font-family: $space-grotesk;
+            padding: 0.2rem 0.5rem;
+            border: 2px solid $main-bg-color;
+            border-bottom: 2px groove $primary-color;
+            border-radius: 7px;
+
+            &:hover {
+              border: 2px groove $primary-color;
+            }
+          }
         }
       }
-    }
-
-    .download {
-      button {
-        padding: 1rem;
-        background-color: $primary-color;
-        border: 1px solid $primary-color;
-        border-radius: 5px;
-        transition: transform 0.5s ease;
+      @media (max-width: 768px) {
+        width: 100%;
       }
-
-      button:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-        transition: transform 0.5s ease;
-        border-bottom: 1px solid $secondary-color;
-        border-right: 1px solid $secondary-color;
-      }
-
-      button:active {
-        transform: scale(0.9);
-        transition: transform 0.5s ease;
-      }
-
-      a {
-        text-decoration: none;
-        color: $white;
-        font-family: $space-grotesk;
-        font-size: 1.2rem;
+      @media (max-width: 500px) {
+        width: 80%;
+        margin: auto;
       }
     }
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+    @media (max-width: 500px) {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+  .download {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+
+    button {
+      padding: 1rem;
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
+      border-radius: 5px;
+      transition: transform 0.5s ease;
+
+      @media (max-width: 768px) {
+        padding: 0.5rem;
+      }
+    }
+
+    button:hover {
+      cursor: pointer;
+      transform: scale(1.1);
+      transition: transform 0.5s ease;
+      border-bottom: 1px solid $secondary-color;
+      border-right: 1px solid $secondary-color;
+    }
+
+    button:active {
+      transform: scale(0.9);
+      transition: transform 0.5s ease;
+    }
+
+    a {
+      text-decoration: none;
+      color: $white;
+      font-family: $space-grotesk;
+      font-size: 1.2rem;
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
 </style>

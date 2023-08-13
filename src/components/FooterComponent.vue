@@ -46,23 +46,32 @@ footer {
   flex-direction: column;
   gap: 1rem;
   align-items: center;
-  padding: 20px;
   background-color: $main-bg-color;
   border-top: 1px solid $primary-color;
   .name {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
     font-family: $space-grotesk;
-    padding: 1rem;
+    padding: 1rem 0 0 0;
 
     span {
       font-size: 1rem;
       padding: 0.5rem;
       border-left: 2px solid $primary-color;
       font-weight: 400;
-      font-family: $space-grotesk;
-      font-style: italic;
-      color: $primary-color;
+      font-family: $noto-serif;
+      color: $black;
+    }
+
+    @media (max-width: 500px) {
+      font-size: 1.2rem;
+      span {
+        display: block;
+        border: none;
+        padding: 0;
+        font-size: 0.8rem;
+        text-align: center;
+      }
     }
   }
   .social-links {
@@ -70,8 +79,9 @@ footer {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    padding-bottom: 1rem;
     img {
-      width: 45px;
+      width: 25px;
       transition: all 0.3s ease;
 
       &:hover {

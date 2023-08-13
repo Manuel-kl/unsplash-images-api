@@ -18,8 +18,7 @@
           ><img src="../assets/linkedIn_logo.png" alt="linkedin" />LinkedIn</a
         >
         <a href="https://manuel-kl.netlify.app/" target="_blank" id="my-button"
-          ><img src="../assets/portfolio-icon.png" alt="linkedin" />Portfolio
-          Website</a
+          ><img src="../assets/portfolio-icon.png" alt="linkedin" />Portfolio</a
         >
       </div>
       <form @submit.prevent="post" class="message">
@@ -57,19 +56,17 @@
         </div>
         <div class="button">
           <button type="submit" :disabled="loading">
-            <template v-if="loading">
-              <i class="fa fa-spinner fa-spin"></i> Sending...
-            </template>
+            <template v-if="loading"> Sending... </template>
             <template v-else> SEND </template>
           </button>
         </div>
+        <div class="response-wrapper">
+          <p class="response" v-if="message">{{ message }}</p>
+          <p class="response-error" v-else-if="error">
+            Failed to send, please try again
+          </p>
+        </div>
       </form>
-      <div class="response-wrapper">
-        <p class="response" v-if="message">{{ message }}</p>
-        <p class="response-error" v-else-if="error">
-          Failed to send, please try again
-        </p>
-      </div>
     </div>
   </div>
   <footer-component />
@@ -93,7 +90,7 @@ const error = ref(null);
 const post = async () => {
   loading.value = true;
   try {
-    await axios.post("https://formspree.io/f/xknaraad", form.value);
+    await axios.post("https://formspree.io/f/xvojkwqq", form.value);
     message.value = "Message sent successfully";
     form.value = {
       name: "",
@@ -121,6 +118,10 @@ const post = async () => {
   justify-content: center;
   background-color: $main-bg-color;
 
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
+
   h2 {
     font-family: $space-grotesk;
     font-size: 2.5rem;
@@ -128,6 +129,7 @@ const post = async () => {
     margin-bottom: 2rem;
     border-bottom: 1px groove $primary-color;
     border-radius: 7px;
+    padding: 0 0.5rem;
   }
 
   .contact-container {
@@ -139,7 +141,10 @@ const post = async () => {
     background-color: $main-bg-color;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+    @media (max-width: 768px) {
+      padding: 1.5rem;
+    }
 
     h4 {
       font-family: $noto-serif;
@@ -151,15 +156,24 @@ const post = async () => {
     .c-links {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
       margin-bottom: 2rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 1rem;
+      gap: 1rem;
+
+      @media (max-width: 768px) {
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 1rem 0;
+      }
 
       a {
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
         text-decoration: none;
         color: $black;
         font-family: $noto-serif;
@@ -167,12 +181,12 @@ const post = async () => {
         margin: 0 1rem;
         padding: 0.5rem 1rem;
         border-radius: 5px;
-        border: 1px solid $primary-color;
+        border: 1px groove $main-bg-color;
         transition: all 0.3s ease-in-out;
+        width: 125px;
 
         &:hover {
-          background-color: $primary-color;
-          color: $white;
+          border: 1px groove $primary-color;
         }
 
         img {
@@ -188,9 +202,16 @@ const post = async () => {
       max-width: 350px;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      // align-items: center;
       justify-content: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      padding: 2rem;
 
+      @media (max-width: 768px) {
+        padding: 2rem 1rem;
+        width: 85%;
+      }
       .inp {
         width: 100%;
         display: flex;
@@ -198,6 +219,10 @@ const post = async () => {
         align-items: flex-start;
         justify-content: center;
         margin-bottom: 1rem;
+
+        @media (max-width: 768px) {
+          width: 85%;
+        }
 
         label {
           font-family: $space-grotesk;
@@ -208,7 +233,7 @@ const post = async () => {
 
         input,
         textarea {
-          width: 100%;
+          width: 85%;
           padding: 0.5rem 1rem;
           border-radius: 5px;
           border: 1px solid $primary-color;
@@ -217,6 +242,10 @@ const post = async () => {
           color: $black;
           outline: none;
           transition: all 0.3s ease-in-out;
+
+          @media (max-width: 768px) {
+            width: 100%;
+          }
 
           &::placeholder {
             font-family: $space-grotesk;
